@@ -1,70 +1,138 @@
-import type { ImageWidget } from "apps/admin/widgets.ts";
+import Header from "../../components/ui/SectionHeader.tsx";
+import { useId } from "../../sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useDevice } from "deco/hooks/useDevice.ts";
-import Section, {
-  type Props as SectionHeaderProps,
-} from "../../components/ui/Section.tsx";
-import Slider from "../../components/ui/Slider.tsx";
-import { clx } from "../../sdk/clx.ts";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import Button from "../../components/ui/Button.tsx";
 
-/** @titleBy label */
-export interface Item {
-  image: ImageWidget;
-  href: string;
-  label: string;
+export interface CategoryGridProps {
+  href?: string;
+  image?: ImageWidget;
+  /** @description Alternative text */
+  label?: string;
+  buttonText?: string;
 }
 
-export interface Props extends SectionHeaderProps {
-  items: Item[];
+export interface Props {
+  header?: {
+    /**
+     * @default Explore Our Categories
+     */
+    title?: string;
+    /**
+     * @default Your description here
+     */
+    description?: string;
+  };
+  list?: CategoryGridProps[];
+  layout?: {
+    headerAlignment?: "center" | "left";
+    categoryCard?: {
+      textPosition?: "top" | "bottom";
+      textAlignment?: "center" | "left";
+    };
+  };
 }
 
-function Card({ image, href, label }: Item) {
+const DEFAULT_LIST = [
+  {
+    href: "/category",
+    image:
+      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2753/b2278d2d-2270-482b-98d4-f09d5f05ba97",
+    label: "category",
+    buttonText: "Explore collection",
+  },
+  {
+    href: "/category",
+    image:
+      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2753/b2278d2d-2270-482b-98d4-f09d5f05ba97",
+    label: "category",
+    buttonText: "Explore collection",
+  },
+  {
+    href: "/category",
+    image:
+      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2753/b2278d2d-2270-482b-98d4-f09d5f05ba97",
+    label: "category",
+    buttonText: "Explore collection",
+  },
+  {
+    href: "/category",
+    image:
+      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2753/b2278d2d-2270-482b-98d4-f09d5f05ba97",
+    label: "category",
+    buttonText: "Explore collection",
+  },
+];
+
+function CategoryGrid(props: Props) {
+  const id = useId();
+  const {
+    header = {
+      title: "Explore Our Categories",
+      description: "Your description",
+    },
+    list = DEFAULT_LIST,
+    layout = {
+      headerAlignment: "center",
+      categoryCard: {
+        textPosition: "bottom",
+        textAlignment: "left",
+      },
+    },
+  } = props;
+
   return (
-    <a href={href} class="flex flex-col items-center justify-center gap-4">
-      <div class="w-44 h-44 rounded-full bg-base-200 flex justify-center items-center">
-        <Image
-          src={image}
-          alt={label}
-          width={100}
-          height={100}
-          loading="lazy"
-        />
-      </div>
-      <span class="font-medium text-sm">{label}</span>
-    </a>
-  );
-}
+    <div
+      id={id}
+      class="container mt-16"
+    >
+      <Header
+        title={header.title}
+        description={header.description || ""}
+        alignment={layout.headerAlignment || "center"}
+      />
 
-function CategoryGrid({ title, cta, items }: Props) {
-  const device = useDevice();
-
-  return (
-    <Section.Container>
-      <Section.Header title={title} cta={cta} />
-
-      {device === "desktop"
-        ? (
-          <div class="grid grid-cols-6 gap-10">
-            {items.map((i) => <Card {...i} />)}
-          </div>
-        )
-        : (
-          <Slider class="carousel carousel-center sm:carousel-end gap-5 w-full">
-            {items.map((i, index) => (
-              <Slider.Item
-                index={index}
-                class={clx(
-                  "carousel-item",
-                  "first:pl-5 first:sm:pl-0",
-                  "last:pr-5 last:sm:pr-0",
+      <div class="grid md:grid-cols-2 grid-cols-1 mt-6">
+        {list.map((
+          { href, image, label, buttonText },
+        ) => (
+          <div>
+            <a
+              href={href}
+              class={`relative flex ${
+                layout.categoryCard?.textAlignment === "left"
+                  ? "justify-start"
+                  : "justify-start items-center"
+              } ${
+                layout.categoryCard?.textPosition === "bottom"
+                  ? "flex-col-reverse"
+                  : "flex-col"
+              }`}
+            >
+              {image &&
+                (
+                  <figure>
+                    <Image
+                      class="w-full"
+                      src={image}
+                      alt={label}
+                      width={720}
+                      height={480}
+                      loading="lazy"
+                    />
+                  </figure>
                 )}
+              <Button
+                class="font-light text-base-content bg-base-100 py-4 px-6 absolute m-6"
+                aria-label={label}
               >
-                <Card {...i} />
-              </Slider.Item>
-            ))}
-          </Slider>
-        )}
-    </Section.Container>
+                {buttonText}
+              </Button>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

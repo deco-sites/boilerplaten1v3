@@ -1,7 +1,7 @@
 import { SectionProps } from "deco/mod.ts";
 import SearchResult, {
   Props as SearchResultProps,
-} from "../search/SearchResult.tsx";
+} from "../../components/search/SearchResult.tsx";
 
 export type Props = SearchResultProps;
 

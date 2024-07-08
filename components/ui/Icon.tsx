@@ -1,42 +1,93 @@
 import { asset } from "$fresh/runtime.ts";
 import type { JSX } from "preact";
 
+export type PaymentIcons =
+  | "Visa"
+  | "Elo"
+  | "Mastercard"
+  | "Visa"
+  | "Pix"
+  | "AmericanExpress"
+  | "Boleto";
+
+export type SocialIcons =
+  | "Twitter"
+  | "Linkedin"
+  | "Pinterest"
+  | "YouTube"
+  | "Tiktok"
+  | "WhatsApp"
+  | "Instagram"
+  | "Facebook"
+  | "YouTubeOutline"
+  | "WhatsAppOutline"
+  | "InstagramOutline"
+  | "FacebookOutline";
 export type AvailableIcons =
-  | "search"
-  | "shopping_bag"
-  | "menu"
-  | "account_circle"
-  | "close"
-  | "chevron-right"
-  | "favorite"
-  | "home_pin"
-  | "call"
-  | "local_shipping"
-  | "pan_zoom"
+  | "Refresh"
+  | "Menu"
+  | "ChevronLeft"
+  | "DoubleChevronLeft"
+  | "ChevronRight"
+  | "ChevronUp"
   | "share"
-  | "sell"
-  | "check-circle"
-  | "error"
-  | "trash";
+  | "ChevronDown"
+  | "Ruler"
+  | "Message"
+  | "QuestionMarkCircle"
+  | "User"
+  | "ShoppingCart"
+  | "Bars3"
+  | "Heart"
+  | "MagnifyingGlass"
+  | "XMark"
+  | "Plus"
+  | "Minus"
+  | "MapPin"
+  | "Phone"
+  | "Logo"
+  | "Zoom"
+  | "Truck"
+  | "Diners"
+  | "Discount"
+  | "Return"
+  | "Deco"
+  | "Discord"
+  | "Email"
+  | "Trash"
+  | "FilterList"
+  | "ArrowsPointingOut"
+  | "WhatsApp"
+  | "ArrowsPointingOut"
+  | "checkIcon"
+  | "SearchBar"
+  | "ArrowRight"
+  | "AllCategories";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
    * Symbol id from element to render. Take a look at `/static/icons.svg`.
    *
-   * Example: <Icon id="search" />
+   * Example: <Icon id="Bell" />
    */
-  id: AvailableIcons;
+  id: AvailableIcons | SocialIcons | PaymentIcons;
   size?: number;
 }
 
-function Icon(
-  { id, size = 24, width, height, ...otherProps }: Props,
-) {
+function Icon({
+  id,
+  strokeWidth = 16,
+  size,
+  width,
+  height,
+  ...otherProps
+}: Props) {
   return (
     <svg
       {...otherProps}
       width={width ?? size}
       height={height ?? size}
+      strokeWidth={strokeWidth}
     >
       <use href={asset(`/sprites.svg#${id}`)} />
     </svg>

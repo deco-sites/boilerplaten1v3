@@ -1,47 +1,52 @@
-import { MINICART_FORM_ID } from "../../constants.ts";
-import { useScript } from "apps/utils/useScript.ts";
+import Button from "../../components/ui/Button.tsx";
+import { useSignal } from "@preact/signals";
+import { useCart } from "apps/vtex/hooks/useCart.ts";
+import { useRef } from "preact/hooks";
 
-export interface Props {
-  coupon?: string;
-}
+function Coupon() {
+  const { cart, loading, addCouponsToCart } = useCart();
+  const ref = useRef<HTMLInputElement>(null);
+  const displayInput = useSignal(false);
+  const coupon = cart.value?.marketingData?.coupon;
 
-function Coupon({ coupon }: Props) {
+  const toggleInput = () => {
+    displayInput.value = !displayInput.value;
+  };
+
+  const applyCouponToCart = (e: MouseEvent) => {
+    e.preventDefault();
+
+    const text = ref.current?.value;
+
+    if (typeof text === "string") {
+      addCouponsToCart({ text });
+      toggleInput();
+    }
+  };
+
   return (
-    <div class="flex justify-between items-center px-4">
-      <span class="text-sm">Cupom de desconto</span>
-
-      <button
-        type="button"
-        class="btn btn-ghost underline font-normal no-animation"
-        hx-on:click={useScript(() => {
-          event?.stopPropagation();
-          const button = event?.currentTarget as HTMLButtonElement;
-          button.classList.add("hidden");
-          button.nextElementSibling?.classList.remove("hidden");
-        })}
-      >
-        {coupon || "Add"}
-      </button>
-
-      {/* Displayed when checkbox is checked=true */}
-      <div class="join hidden">
+    <div class="flex justify-between items-center px-4 lg:px-0 mb-6 w-full gap-4">
+      <span class="max-lg:hidden text-sm text-base-300">Desconto</span>
+      <form class="flex gap-2 w-full justify-between lg:justify-end">
         <input
-          form={MINICART_FORM_ID}
+          id="coupon"
           name="coupon"
-          class="input join-item"
+          ref={ref}
+          class="border-2 border-neutral outline-none rounded-full placeholder-neutral p-3 h-9 text-xs w-[75%]"
           type="text"
           value={coupon ?? ""}
           placeholder={"Cupom"}
         />
-        <button
-          form={MINICART_FORM_ID}
-          class="btn join-item"
-          name="action"
-          value="set-coupon"
+        <Button
+          class="w-14 h-9 border-primary text-primary font-medium text-xs hover:bg-primary hover:text-info"
+          type="submit"
+          htmlFor="coupon"
+          loading={loading.value}
+          onClick={applyCouponToCart}
         >
           Ok
-        </button>
-      </div>
+        </Button>
+      </form>
     </div>
   );
 }

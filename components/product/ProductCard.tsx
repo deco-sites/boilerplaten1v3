@@ -1,228 +1,450 @@
+import {
+  BUTTON_VARIANTS,
+  ButtonVariant,
+} from "$store/components/minicart/Cart.tsx";
+import Avatar from "$store/components/ui/Avatar.tsx";
+import AddToCartButton from "$store/islands/AddToCartButton.tsx";
+import WishlistIcon from "$store/islands/WishlistButton.tsx";
+import { SendEventOnClick } from "../../components/Analytics.tsx";
+import { formatPrice } from "$store/sdk/format.ts";
+import { useOffer } from "$store/sdk/useOffer.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
-import { clx } from "../../sdk/clx.ts";
-import { formatPrice } from "../../sdk/format.ts";
-import { relative } from "../../sdk/url.ts";
-import { useOffer } from "../../sdk/useOffer.ts";
-import { useSendEvent } from "../../sdk/useSendEvent.ts";
-import { useVariantPossibilities } from "../../sdk/useVariantPossiblities.ts";
-import WishlistButton from "../wishlist/WishlistButton.tsx";
-import AddToCartButton from "./AddToCartButton.tsx";
-import { Ring } from "./ProductVariantSelector.tsx";
-import { useId } from "../../sdk/useId.ts";
+import DiscountBadge, { DiscountBadgeProps } from "./DiscountBadge.tsx";
+import ProductHighlights from "$store/components/product/ProductHighlights.tsx";
+import { HighLight } from "$store/components/product/ProductHighlights.tsx";
+
+export interface Layout {
+  basics?: {
+    contentAlignment?: "Left" | "Center";
+    oldPriceSize?: "Small" | "Normal";
+    ctaText?: string;
+    mobileCtaText?: string;
+    ctaVariation?: ButtonVariant;
+    ctaMode?: "Go to Product Page" | "Add to Cart";
+  };
+  /**
+   * @description Discount Percent value To Pix, Boleto etc... , sample: 10 = 10%
+   */
+  discountPercent?: number;
+  discount?: DiscountBadgeProps;
+  elementsPositions?: {
+    skuSelector?: "Top" | "Bottom";
+    favoriteIcon?: "Top right" | "Top left";
+  };
+  hide: {
+    productName?: boolean;
+    productDescription?: boolean;
+    allPrices?: boolean;
+    installments?: boolean;
+    skuSelector?: boolean;
+    cta?: boolean;
+  };
+  onMouseOver?: {
+    image?: "Change image" | "Zoom image";
+    showFavoriteIcon?: boolean;
+    showSkuSelector?: boolean;
+    showCardShadow?: boolean;
+    showCta?: boolean;
+  };
+}
 
 interface Props {
   product: Product;
+  /**
+   * @description Discount Percent value To Pix, Boleto etc... , sample: 10 = 10%
+   */
+  discountPercent?: number;
   /** Preload card image */
   preload?: boolean;
-
+  /**
+   * @description Flags, displayed when  products are found
+   */
+  highlights?: HighLight[];
   /** @description used for analytics event */
   itemListName?: string;
-
   /** @description index of the product card in the list */
   index?: number;
-
-  class?: string;
+  layout?: Layout;
 }
 
-const WIDTH = 287;
-const HEIGHT = 287;
-const ASPECT_RATIO = `${WIDTH} / ${HEIGHT}`;
+export const relative = (url: string) => {
+  const link = new URL(url);
+  return `${link.pathname}${link.search}`;
+};
+
+const WIDTH = 279;
+const HEIGHT = 270;
 
 function ProductCard({
   product,
   preload,
   itemListName,
+  layout,
+  highlights,
   index,
-  class: _class,
 }: Props) {
-  const id = useId();
+  const { url, productID, name, image: images, offers, isVariantOf } = product;
 
-  const { url, image: images, offers, isVariantOf } = product;
+  console.log(layout?.discountPercent, "--------------");
+
+  const productGroupID = isVariantOf?.productGroupID;
+  const id = `product-card-${productID}`;
+
   const hasVariant = isVariantOf?.hasVariant ?? [];
-  const title = isVariantOf?.name ?? product.name;
-  const [front, back] = images ?? [];
+  const front = images && images[0];
+  let back = images &&
+    images.find((obj) => {
+      return obj.name === "over";
+    });
+  if (!back) back = images?.[1] ?? images?.[0];
 
-  const { listPrice, price, seller = "1", availability } = useOffer(offers);
-  const inStock = availability === "https://schema.org/InStock";
+  const { listPrice, price, installments, seller, availability } = useOffer(
+    offers,
+  );
+
   const possibilities = useVariantPossibilities(hasVariant, product);
-  const firstSkuVariations = Object.entries(possibilities)[0];
-  const variants = Object.entries(firstSkuVariations[1] ?? {});
-  const relativeUrl = relative(url);
-  const percent = listPrice && price
-    ? Math.round(((listPrice - price) / listPrice) * 100)
-    : 0;
+  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
-  const item = mapProductToAnalyticsItem({ product, price, listPrice, index });
+  const l = layout;
+  const align =
+    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
+      ? "left"
+      : "center";
+  const skuSelector = variants
+    .map(([value, link]) => [value, relative(link ?? "")] as const)
+    .map(([value, link]) => (
+      <li>
+        <a href={link}>
+          <Avatar
+            content={value}
+            variant={link === url ? "active" : link ? "default" : "disabled"}
+          />
+        </a>
+      </li>
+    ));
 
-  {/* Add click event to dataLayer */}
-  const event = useSendEvent({
-    on: "click",
-    event: {
-      name: "select_item" as const,
-      params: {
-        item_list_name: itemListName,
-        items: [item],
-      },
-    },
-  });
+  const addToCartButtonClassNames = (variant: string | undefined) =>
+    `lg:text-sm font-medium text-xs whitespace-nowrap m-auto btn h-8 min-h-6 max-md:min-h-[2.25rem] max-md:h-[2.25rem] btn-${
+      BUTTON_VARIANTS[variant ?? "primary"]
+    }`;
+
+  const cta = layout?.basics?.ctaMode === "Go to Product Page"
+    ? (
+      <a
+        href={url && relative(url)}
+        aria-label="view product"
+        class={`min-w-[162px] ${
+          addToCartButtonClassNames(
+            layout?.basics?.ctaVariation,
+          )
+        }`}
+      >
+        <span class="max-lg:hidden flex font-medium ">
+          {l?.basics?.ctaText || "Ver produto"}
+        </span>
+        <span class="lg:hidden flex font-medium">
+          {l?.basics?.mobileCtaText || "Add ao carrinho"}
+        </span>
+      </a>
+    )
+    : l?.basics?.mobileCtaText
+    ? (
+      <>
+        <AddToCartButton
+          url={url as string}
+          availability={availability as string}
+          quantity={1}
+          name={product.name as string}
+          discount={price && listPrice ? listPrice - price : 0}
+          productGroupId={product.isVariantOf?.productGroupID ?? ""}
+          price={price as number}
+          sellerId={seller as string}
+          skuId={product.sku}
+          label={l?.basics?.mobileCtaText}
+          classes={`mb-5 uppercase font-bold min-w-[200px]  lg:min-w-0 ${
+            addToCartButtonClassNames(
+              layout?.basics?.ctaVariation,
+            )
+          }`}
+        />
+      </>
+    )
+    : (
+      <AddToCartButton
+        quantity={1}
+        name={product.name as string}
+        availability={availability as string}
+        discount={price && listPrice ? listPrice - price : 0}
+        productGroupId={product.isVariantOf?.productGroupID ?? ""}
+        price={price as number}
+        sellerId={seller as string}
+        skuId={product.sku}
+        label={l?.basics?.ctaText}
+        classes={`hidden lg:flex lg:justify-center ${
+          addToCartButtonClassNames(
+            layout?.basics?.ctaVariation,
+          )
+        }`}
+      />
+    );
+
+  const price2: number = price as number;
+  const listPrice2: number = listPrice as number;
 
   return (
     <div
-      {...event}
-      class={clx("card card-compact group text-sm", _class)}
+      class={`card card-compact opacity-100 bg-opacity-100 group w-full ${
+        align === "center" ? "text-center" : "text-start"
+      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}`}
+      data-deco="view-product"
+      id={`product-card-${productID}`}
     >
+      {/* Add click event to dataLayer */}
+      <SendEventOnClick
+        id={id}
+        event={{
+          name: "select_item" as const,
+          params: {
+            item_list_name: itemListName,
+            items: [
+              mapProductToAnalyticsItem({
+                product,
+                price,
+                listPrice,
+                index,
+              }),
+            ],
+          },
+        }}
+      />
       <figure
-        class={clx(
-          "relative bg-base-200",
-          "rounded border border-transparent",
-          "group-hover:border-primary",
-        )}
-        style={{ aspectRatio: ASPECT_RATIO }}
+        class="relative rounded-none"
+        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
-        {/* Product Images */}
-        <a
-          href={relativeUrl}
-          aria-label="view product"
-          class={clx(
-            "absolute top-0 left-0",
-            "grid grid-cols-1 grid-rows-1",
-            "w-full",
-            !inStock && "opacity-70",
-          )}
+        {/* Wishlist button */}
+        <div
+          class={`absolute top-2 z-10
+          ${
+            l?.elementsPositions?.favoriteIcon === "Top left"
+              ? "left-2"
+              : "right-2"
+          }
+          ${
+            l?.onMouseOver?.showFavoriteIcon
+              ? "lg:hidden lg:group-hover:block"
+              : "lg:hidden"
+          }
+        `}
         >
+          <WishlistIcon productGroupID={productGroupID} productID={productID} />
+        </div>
+        <a
+          href={url && relative(url)}
+          aria-label="view product"
+          class="contents relative"
+        >
+          <div
+            class={`absolute w-full left-0 top-0 p-[10px] flex items-center z-10`}
+          >
+            <div class={`grid grid-cols-2 gap-y-1 w-full`}>
+              {listPrice2 !== price2 && (
+                <DiscountBadge
+                  price={price2}
+                  listPrice={listPrice2}
+                  label={l?.discount?.label}
+                  variant={l?.discount?.variant}
+                />
+              )}
+
+              {product && (
+                <ProductHighlights
+                  product={product}
+                  highlights={highlights}
+                  listPrice={listPrice2}
+                />
+              )}
+            </div>
+          </div>
+
           <Image
-            src={front.url!}
-            alt={front.alternateName}
+            src={front ? front.url! : ""}
+            alt={front ? front.alternateName : ""}
             width={WIDTH}
             height={HEIGHT}
-            style={{ aspectRatio: ASPECT_RATIO }}
-            class={clx(
-              "object-cover",
-              "rounded w-full",
-              "col-span-full row-span-full",
-            )}
+            class={`
+              absolute rounded-none w-full
+              ${
+              !l?.onMouseOver?.image ||
+                l?.onMouseOver?.image == "Change image"
+                ? "duration-100 transition-opacity opacity-100 lg:group-hover:opacity-0"
+                : ""
+            }
+              ${
+              l?.onMouseOver?.image == "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-105"
+                : ""
+            }
+            `}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
-          <Image
-            src={back?.url ?? front.url!}
-            alt={back?.alternateName ?? front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            style={{ aspectRatio: ASPECT_RATIO }}
-            class={clx(
-              "object-cover",
-              "rounded w-full",
-              "col-span-full row-span-full",
-              "transition-opacity opacity-0 lg:group-hover:opacity-100",
-            )}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-
-        {/* Wishlist button */}
-        <div class="absolute top-0 left-0 w-full flex items-center justify-between">
-          {/* Notify Me */}
-          <span
-            class={clx(
-              "text-sm/4 font-normal text-black bg-error bg-opacity-15 text-center rounded-badge px-2 py-1",
-              inStock && "opacity-0",
-            )}
-          >
-            Notify me
-          </span>
-
-          {/* Discounts */}
-          <span
-            class={clx(
-              "text-sm/4 font-normal text-black bg-primary bg-opacity-15 text-center rounded-badge px-2 py-1",
-              (percent < 1 || !inStock) && "opacity-0",
-            )}
-          >
-            {percent} % off
-          </span>
-        </div>
-
-        <div class="absolute bottom-0 right-0">
-          <WishlistButton item={item} variant="icon" />
-        </div>
-      </figure>
-
-      <a href={relativeUrl} class="pt-5">
-        <span class="font-medium">
-          {title}
-        </span>
-
-        <div class="flex gap-2 pt-2">
-          {listPrice && (
-            <span class="line-through font-normal text-gray-400">
-              {formatPrice(listPrice, offers?.priceCurrency)}
-            </span>
-          )}
-          <span class="font-medium text-base-300">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
-        </div>
-      </a>
-
-      {/* SKU Selector */}
-      {variants.length > 1 && (
-        <ul class="flex items-center justify-start gap-2 pt-4 pb-1 pl-1">
-          {variants.map(([value, link]) => [value, relative(link)] as const)
-            .map(([value, link]) => (
-              <li>
-                <a href={link} class="cursor-pointer">
-                  <input
-                    class="hidden peer"
-                    type="radio"
-                    name={`${id}-${firstSkuVariations[0]}`}
-                    checked={link === relativeUrl}
-                  />
-                  <Ring value={value} checked={link === relativeUrl} />
-                </a>
-              </li>
-            ))}
-        </ul>
-      )}
-
-      <div class="flex-grow" />
-
-      <div>
-        {inStock
-          ? (
-            <AddToCartButton
-              product={product}
-              seller={seller}
-              item={item}
-              class={clx(
-                "btn",
-                "btn-outline justify-start border-none !text-sm !font-medium px-0 no-animation w-full",
-                "hover:!bg-transparent",
-                "disabled:!bg-transparent disabled:!opacity-50",
-                "btn-primary hover:!text-primary disabled:!text-primary",
-              )}
+          {(!l?.onMouseOver?.image ||
+            l?.onMouseOver?.image == "Change image") && (
+            <Image
+              src={back?.url ?? (front ? front.url! : "")}
+              alt={back?.alternateName ?? (front ? front.alternateName : "")}
+              width={WIDTH}
+              height={HEIGHT}
+              class="absolute transition-opacity rounded-none w-full opacity-0 lg:group-hover:opacity-100"
+              sizes="(max-width: 640px) 50vw, 20vw"
+              loading="lazy"
+              decoding="async"
             />
+          )}
+        </a>
+      </figure>
+      {/* Prices & Name */}
+
+      <div class="flex-auto flex flex-col">
+        {/* SKU Selector */}
+        {(!l?.elementsPositions?.skuSelector ||
+          l?.elementsPositions?.skuSelector === "Top") && (
+          <>
+            {l?.hide.skuSelector
+              ? (
+                ""
+              )
+              : (
+                <ul
+                  class={`flex items-center gap-2 w-full ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                >
+                  {skuSelector}
+                </ul>
+              )}
+          </>
+        )}
+
+        {l?.hide.productName && l?.hide.productDescription
+          ? (
+            ""
           )
           : (
-            <a
-              href={relativeUrl}
-              class={clx(
-                "btn",
-                "btn-outline justify-start border-none !text-sm !font-medium px-0 no-animation w-full",
-                "hover:!bg-transparent",
-                "disabled:!bg-transparent disabled:!opacity-75",
-                "btn-error hover:!text-error disabled:!text-error",
-              )}
-            >
-              Sold out
-            </a>
+            <div class="flex flex-col gap-0 mt-[15px]">
+              {l?.hide.productName
+                ? (
+                  ""
+                )
+                : (
+                  <h2 class="line-clamp-2 uppercase text-xs font-bold text-base-content">
+                    {isVariantOf?.name || name}
+                  </h2>
+                )}
+              {l?.hide.productDescription
+                ? (
+                  ""
+                )
+                : (
+                  <p class="truncate text-sm lg:text-sm text-neutral">
+                    {product.description}
+                  </p>
+                )}
+            </div>
           )}
+        {l?.hide.allPrices
+          ? (
+            ""
+          )
+          : (
+            <div class="flex flex-col mt-2">
+              {layout?.discountPercent
+                ? (
+                  <div class="text-xs text-primary font-normal text-gray-800 mt-[5px]">
+                    <span class="text-[1.0rem] text-primary font-bold">
+                      {formatPrice(
+                        price! -
+                          (price! * (layout?.discountPercent % 100)) / 100,
+                        offers!.priceCurrency,
+                      )}
+                      {" "}
+                    </span>
+                    à vista ou
+                  </div>
+                )
+                : null}
+              <div
+                class={`flex items-center gap-2.5 ${
+                  l?.basics?.oldPriceSize === "Normal" ? "lg:flex-row" : ""
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
+              >
+                {listPrice && price && listPrice > price && (
+                  <p
+                    class={`line-through text-base-300 text-xs  ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                    }`}
+                  >
+                    {formatPrice(listPrice, offers!.priceCurrency!)}
+                  </p>
+                )}
+                <p class="text-primary text-sm">
+                  {formatPrice(price, offers!.priceCurrency!)}
+                </p>
+              </div>
+              {l?.hide.installments
+                ? (
+                  ""
+                )
+                : (
+                  <>
+                    {installments
+                      ? (
+                        <div class="text-xs font-normal text-base-content mt-[5px]">
+                          em até {installments}
+                        </div>
+                      )
+                      : null}
+                  </>
+                )}
+            </div>
+          )}
+
+        {/* SKU Selector */}
+        {l?.elementsPositions?.skuSelector === "Bottom" && (
+          <>
+            {l?.hide.skuSelector
+              ? (
+                ""
+              )
+              : (
+                <ul
+                  class={`flex items-center gap-2 w-full ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                >
+                  {skuSelector}
+                </ul>
+              )}
+          </>
+        )}
+
+        <div
+          class={`w-full flex flex-col mt-[10px]
+          ${
+            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+              // ? "transition-opacity lg:opacity-0 lg:group-hover:opacity-100"
+              ? "transition-opacity opacity-100"
+              : "lg:hidden"
+          }
+        `}
+        >
+          {l?.onMouseOver?.showCta && cta}
+        </div>
       </div>
     </div>
   );
