@@ -2,9 +2,9 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import { clx } from "../../sdk/clx.ts";
 import { formatPrice } from "../../sdk/format.ts";
-import { useScript } from "apps/utils/useScript.ts";
 import Icon from "../ui/Icon.tsx";
 import QuantitySelector from "../ui/QuantitySelector.tsx";
+import { useScript } from "deco/hooks/useScript.ts";
 
 export type Item = AnalyticsItem & {
   listPrice: number;
@@ -65,7 +65,7 @@ function CartItem({ item, index, locale, currency }: Props) {
             )}
             hx-on:click={useScript(removeItemHandler)}
           >
-            <Icon id="trash" size={24} />
+            <Icon id="Trash" size={24} />
           </button>
         </div>
 

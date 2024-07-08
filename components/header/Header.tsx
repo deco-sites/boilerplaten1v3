@@ -47,12 +47,9 @@ export interface Props {
 function Header(
   {
     searchbar: _searchbar,
-    products,
     navItems = [],
-    suggestions,
   }: Props,
 ) {
-  const searchbar = { ..._searchbar, products, suggestions };
   return (
     <>
       <header style={{ height: headerHeight }}>

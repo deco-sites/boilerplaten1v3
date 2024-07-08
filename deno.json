@@ -1,5 +1,7 @@
 {
   "imports": {
+    "deco-sites/boilerplaten1v3/": "./",
+    "$store/": "./",
     "deco/": "https://cdn.jsdelivr.net/gh/deco-cx/deco@1.75.2/",
     "apps/": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.47.11/",
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",

@@ -12,7 +12,7 @@ import { Layout } from "$store/components/product/ProductCard.tsx";
 import { HighLight } from "$store/components/product/ProductHighlights.tsx";
 import { isArray } from "https://deno.land/x/djwt@v2.8/util.ts";
 import NotFound from "$store/components/search/NotFound.tsx";
-import Pagination from "deco-sites/scarcom/components/search/Pagination.tsx";
+import Pagination from "$store/components/search/Pagination.tsx";
 
 export interface DiscountBadgeProps {
   label: string;
