@@ -1,0 +1,16 @@
+{
+  "__resolveType": "site/apps/deco/vtex.ts",
+  "salesChannel": "1",
+  "defaultSegment": {
+    "channelPrivacy": "public",
+    "channel": "1",
+    "currencyCode": "BRL",
+    "currencySymbol": "R$",
+    "countryCode": "BRA",
+    "cultureInfo": "pt-BR"
+  },
+  "platform": "vtex",
+  "account": "agencian1",
+  "publicUrl": "agencian1.myvtex.com",
+  "usePortalSitemap": true
+}
