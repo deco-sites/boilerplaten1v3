@@ -5,7 +5,28 @@
       "__resolveType": "Header Global"
     },
     {
+      "__resolveType": "Home - Carousel"
+    },
+    {
+      "__resolveType": "Banner Secundário - Categorias"
+    },
+    {
+      "__resolveType": "Home - Prateleira Coleção"
+    },
+    {
+      "__resolveType": "Banners Terciário - Grid"
+    },
+    {
+      "__resolveType": "Instagram - Imagens"
+    },
+    {
+      "__resolveType": "Sobre a loja - InfoCard"
+    },
+    {
       "__resolveType": "Footer Global"
+    },
+    {
+      "__resolveType": "LgpdModal"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",

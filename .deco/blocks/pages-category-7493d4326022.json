@@ -12,28 +12,19 @@
       "__resolveType": "commerce/sections/Seo/SeoPLP.tsx"
     },
     {
-      "__resolveType": "Header"
+      "__resolveType": "Header Global"
     },
     {
-      "__resolveType": "site/sections/Product/SearchResult.tsx",
-      "page": {
-        "__resolveType": "PLP Loader"
-      },
-      "layout": {
-        "columns": {
-          "mobile": 2,
-          "desktop": 4
-        },
-        "variant": "aside",
-        "pagination": "show-more"
-      },
-      "startingPage": 1
+      "__resolveType": "Categoria - Breadcrumb"
     },
     {
-      "__resolveType": "site/sections/Newsletter/Newsletter.tsx"
+      "__resolveType": "Categoria - Banner"
     },
     {
-      "__resolveType": "Footer"
+      "__resolveType": "SearchResults Category"
+    },
+    {
+      "__resolveType": "Footer Global"
     }
   ],
   "__resolveType": "website/pages/Page.tsx"

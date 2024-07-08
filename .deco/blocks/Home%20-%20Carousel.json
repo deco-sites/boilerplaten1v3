@@ -1,0 +1,30 @@
+{
+  "__resolveType": "site/sections/Container.tsx",
+  "label": "\"Container\"",
+  "sections": [
+    {
+      "section": {
+        "__resolveType": "site/sections/Images/Carousel.tsx",
+        "images": [
+          {
+            "action": {
+              "variant": "primary",
+              "href": "/conference_cam_logitech_rally_system_ultra_hd_ptz_960-001233/p"
+            },
+            "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/10513/21e91f40-0d25-4afd-9bf7-28dfd95d8322",
+            "alt": "Logitech Rally Plus",
+            "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/10513/278807f1-b796-4fa0-827c-2378b3e0315d"
+          }
+        ],
+        "showPaginationArrows": "Desktop Only",
+        "showPaginationDots": "Always",
+        "interval": 5,
+        "preload": true
+      },
+      "shadow": "none",
+      "overFlow": "overflow-none",
+      "verticalSpacing": "top",
+      "label": "Carousel"
+    }
+  ]
+}
