@@ -98,10 +98,10 @@
     "__resolveType": "website/pages/Page.tsx"
   },
   "/.deco/blocks/pages-productpage-ce4850591828.json": {
-    "name": "Product Page",
-    "path": "/products/:slug",
     "blockType": "pages",
-    "__resolveType": "website/pages/Page.tsx"
+    "__resolveType": "website/pages/Page.tsx",
+    "name": "Product Page",
+    "path": "/products/:slug"
   },
   "/.deco/blocks/site.json": {
     "blockType": "apps",
@@ -142,5 +142,9 @@
   "/.deco/blocks/deco-vtex.json": {
     "blockType": "apps",
     "__resolveType": "site/apps/deco/vtex.ts"
+  },
+  "/.deco/blocks/Header%20Global.json": {
+    "blockType": "sections",
+    "__resolveType": "site/sections/Container.tsx"
   }
 }

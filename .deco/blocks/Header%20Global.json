@@ -1,0 +1,518 @@
+{
+  "__resolveType": "site/sections/Container.tsx",
+  "label": "\"Container\"",
+  "sections": [
+    {
+      "section": {
+        "__resolveType": "site/sections/Header/TopNavBar.tsx",
+        "alerts": [
+          {
+            "idIcon": "",
+            "textColor": "#ffffff",
+            "alt": "Atendimento Personalizado",
+            "textAlert": "Atendimento Personalizado"
+          },
+          {
+            "idIcon": "",
+            "textColor": "#ffffff",
+            "textAlert": "Frete Grátis acima de R$499,99",
+            "alt": "Frete Grátis acima de R$499,99"
+          },
+          {
+            "idIcon": "",
+            "textAlert": "Compra Segura ",
+            "textColor": "#ffffff",
+            "alt": "Compra Segura "
+          },
+          {
+            "idIcon": "",
+            "textAlert": "10% de desconto no boleto/PIX",
+            "textColor": "#ffffff"
+          }
+        ],
+        "interval": 5
+      },
+      "shadow": "none",
+      "overFlow": "overflow-none",
+      "verticalSpacing": "top",
+      "label": "Topbar",
+      "backgroundColor": "#848689"
+    },
+    {
+      "section": {
+        "__resolveType": "site/sections/Header/HeaderLayout.tsx",
+        "logo": {
+          "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/10513/1f6dc342-05a2-4692-87d3-22a19abac5ca",
+          "width": 150,
+          "height": 50,
+          "desktop": {
+            "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/10513/c2ae8f96-74d9-4d4b-8e42-02939499160d"
+          },
+          "mobile": {
+            "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/10513/c2ae8f96-74d9-4d4b-8e42-02939499160d"
+          }
+        },
+        "navItems": [],
+        "minicart": {
+          "desktop": {
+            "buttonMode": "primary"
+          },
+          "goToCartLabel": "Ir para o Carrinho",
+          "mobile": {
+            "buttonMode": "primary"
+          },
+          "showClearButton": false,
+          "buttonMode": "secondary"
+        },
+        "searchbar": {
+          "cardLayout": {
+            "onMouseOver": {
+              "showCta": false
+            },
+            "hide": {
+              "skuSelector": true,
+              "productDescription": true,
+              "cta": true
+            },
+            "discount": {
+              "label": "off",
+              "variant": "secondary"
+            },
+            "basics": {
+              "ctaMode": "Add to Cart",
+              "mobileCtaText": "Adicionar ao carrinho",
+              "contentAlignment": "Center",
+              "ctaText": "Adicionar ao carrinho"
+            },
+            "elementsPositions": {}
+          },
+          "placeholder": "Digite sua busca aqui..."
+        }
+      },
+      "shadow": "none",
+      "overFlow": "overflow-none",
+      "verticalSpacing": "top",
+      "label": "Header",
+      "withContainer": true,
+      "backgroundColor": " "
+    },
+    {
+      "section": {
+        "__resolveType": "site/sections/Header/HeaderNavMenu.tsx",
+        "navItems": [
+          {
+            "href": "/",
+            "label": "Todas as categorias",
+            "variant": "AllCategories",
+            "children": [
+              {
+                "href": "/mercearia",
+                "label": "Mercearia",
+                "variant": "CommonChild",
+                "children": [
+                  {
+                    "href": "/mercearia/acucar-e-adocantes",
+                    "label": "Açucar e Adoçantes",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/mercearia/agua",
+                    "label": "Água",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/mercearia/cafe",
+                    "label": "Café",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/mercearia/confeitaria",
+                    "label": "Confeitaria",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/mercearia/doces",
+                    "label": "Doces",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/mercearia/isqueiros",
+                    "label": "Isqueiros",
+                    "variant": "CommonChild",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "href": "/limpeza",
+                "label": "Limpeza",
+                "variant": "CommonChild",
+                "children": [
+                  {
+                    "href": "/limpeza/higiene",
+                    "label": "Higiene",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/limpeza/panos",
+                    "label": "Panos",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/limpeza/produtos-de-limpeza",
+                    "label": "Produtos de Limpeza",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/limpeza/utensilios",
+                    "label": "Utensilios",
+                    "variant": "CommonChild",
+                    "children": []
+                  }
+                ],
+                "highlighted": false
+              },
+              {
+                "href": "/faber-castell-premium",
+                "label": "Faber-Castell Premium",
+                "variant": "CommonChild",
+                "children": [
+                  {
+                    "href": "/faber-castell-premium/art---graphic",
+                    "label": "Art & Graphic",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/faber-castell-premium/creative-studio",
+                    "label": "Creative Studio",
+                    "variant": "CommonChild",
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "label": "Outras",
+                "variant": "CommonChild",
+                "children": [
+                  {
+                    "href": "/papelaria",
+                    "label": "Papelaria",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/escritorio",
+                    "label": "Escritório",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/informatica",
+                    "label": "Informática",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/artesanato",
+                    "label": "Artesanato",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/festas",
+                    "label": "Festas",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/descartaveis",
+                    "label": "Descartáveis",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/lazer-e-utilidades",
+                    "label": "Lazer e Utilidades",
+                    "variant": "CommonChild",
+                    "children": []
+                  },
+                  {
+                    "href": "/atacado",
+                    "label": "Atacado",
+                    "variant": "CommonChild",
+                    "children": []
+                  }
+                ]
+              }
+            ],
+            "highlighted": true
+          },
+          {
+            "href": "/rede",
+            "label": "Rede",
+            "variant": "CommonChild",
+            "children": [
+              {
+                "href": "/rede/access-point?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Access+Point",
+                "label": "Access Point",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/rede/adaptadores-wireless?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Adaptadores+Wireless",
+                "label": "Adaptadores Wireless",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/rede/antena-wireless?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Antena+Wireless",
+                "label": "Antena Wireless",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "variant": "CommonChild",
+                "children": [],
+                "label": "Cabo de Rede",
+                "href": "/rede/cabo-de-rede?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Cabo+de+Rede"
+              },
+              {
+                "href": "/rede/camera-ip?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Camera+IP",
+                "label": "Camera IP",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/rede/kvm?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=KVM",
+                "label": "KVM",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/rede/placa-de-rede?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Placa+de+Rede",
+                "label": "Placa de Rede",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/rede/powerline?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Powerline",
+                "label": "Powerline",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Print Server",
+                "href": "/rede/print-server?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Print+Server"
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Roteador",
+                "href": "/rede/roteador?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Roteador"
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "href": "/rede/switch?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Switch",
+                "label": "Switch"
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Telefonia IP",
+                "href": "/rede/telefonia-ip?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Telefonia+IP"
+              }
+            ]
+          },
+          {
+            "href": "/armazenamento",
+            "label": "Armazenamento",
+            "variant": "CommonChild",
+            "children": [
+              {
+                "href": "/armazenamento/hd-externo?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+Externo",
+                "label": "HD Externo",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/armazenamento/hd-para-monitoramento?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+para+Monitoramento",
+                "label": "HD para Monitoramento",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "label": "HD para NAS",
+                "variant": "CommonChild",
+                "children": [],
+                "href": "/armazenamento/hd-para-nas?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+para+NAS"
+              },
+              {
+                "href": "/armazenamento/hd-para-notebook?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+para+Notebook",
+                "variant": "CommonChild",
+                "children": [],
+                "label": "HD para Notebook"
+              },
+              {
+                "href": "/armazenamento/hd-para-pc?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+para+PC",
+                "label": "HD para PC",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/armazenamento/hd-para-servidor?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+para+Servidor",
+                "label": "HD para Servidor",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/armazenamento/hd-ssd?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=HD+SSD",
+                "label": "HD SSD",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/armazenamento/nas?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=NAS",
+                "label": "NAS",
+                "variant": "CommonChild",
+                "children": []
+              }
+            ]
+          },
+          {
+            "href": "/memoria",
+            "label": "Memória",
+            "variant": "CommonChild",
+            "children": [
+              {
+                "href": "/memoria/memoria-ram-ddr2?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+DDR2",
+                "label": "Memória Ram DDR2",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/memoria/memoria-ram-ddr3?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+DDR3",
+                "label": "Memória Ram DDR3",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/memoria/memoria-ram-ddr4?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+DDR4",
+                "label": "Memória Ram DDR4",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/memoria/memoria-ram-para-notebook?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+Para+Notebook",
+                "label": "Memória Ram Para Notebook",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/memoria/memoria-ram-para-pc?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+Para+PC",
+                "label": "Memória Ram Para PC",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/memoria/memoria-ram-para-servidor?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Mem%c3%b3ria+Ram+para+Servidor",
+                "label": "Memória Ram para Servidor",
+                "variant": "CommonChild",
+                "children": []
+              }
+            ]
+          },
+          {
+            "href": "/audio-e-video",
+            "label": "Áudio e Vídeo",
+            "variant": "CommonChild",
+            "children": [
+              {
+                "href": "/a%C2%81udio-e-video/caixa-de-som?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Caixa+de+Som",
+                "label": "Caixa de Som",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/a%C2%81udio-e-video/fone-de-ouvido?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Fone+de+Ouvido",
+                "label": "Fone de Ouvido",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/a%C2%81udio-e-video/placa-de-captura-de-imagem?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Placa+de+Captura+de+Imagem",
+                "label": "Placa de Captura de Imagem",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/a%C2%81udio-e-video/placa-de-video?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Placa+de+V%c3%addeo",
+                "label": "Placa de Vídeo",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/a%C2%81udio-e-video/webcam?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Webcam",
+                "label": "Webcam",
+                "variant": "CommonChild",
+                "children": []
+              }
+            ]
+          },
+          {
+            "href": "/energia",
+            "label": "Energia",
+            "variant": "CommonChild",
+            "children": [
+              {
+                "href": "/energia/bateria-externa-para-nobreak?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Bateria+Externa+Para+Nobreak",
+                "label": "Bateria Externa para Nobreak",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/energia/bateria-interna-para-nobreak?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Bateria+Interna+para+Nobreak",
+                "label": "Bateria Interna para Nobreak",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/energia/estabilizador?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Estabilizador",
+                "label": "Estabilizador",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/energia/fonte-para-desktop?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Fonte+para+Desktop",
+                "label": "Fonte para Desktop",
+                "variant": "CommonChild",
+                "children": []
+              },
+              {
+                "href": "/energia/nobreak?&utmi_p=_&utmi_pc=Navegador+Todos+Departamento&utmi_cp=Nobreak",
+                "label": "Nobreak",
+                "variant": "CommonChild",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      "shadow": "none",
+      "overFlow": "overflow-none",
+      "verticalSpacing": "top",
+      "label": "HeaderNavMenu"
+    }
+  ]
+}
