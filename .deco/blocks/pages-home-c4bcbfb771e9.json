@@ -3,6 +3,9 @@
   "sections": [
     {
       "__resolveType": "Header Global"
+    },
+    {
+      "__resolveType": "Footer Global"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",
