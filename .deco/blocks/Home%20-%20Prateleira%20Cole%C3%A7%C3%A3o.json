@@ -9,8 +9,7 @@
           "__resolveType": "vtex/loaders/legacy/productList.ts",
           "props": {
             "sort": "",
-            "count": 15,
-            "collection": "143"
+            "count": 15
           }
         },
         "highlights": [],
