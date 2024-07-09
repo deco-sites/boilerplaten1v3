@@ -250,5 +250,9 @@
     "path": "/institucional/trocas-devolucoes",
     "blockType": "pages",
     "__resolveType": "website/pages/Page.tsx"
+  },
+  "/.deco/blocks/N1.json": {
+    "blockType": "sections",
+    "__resolveType": "site/sections/Theme/Theme.tsx"
   }
 }
