@@ -1,9 +1,9 @@
 import { asset, Head } from "$fresh/runtime.ts";
 import { defineApp } from "$fresh/server.ts";
 import { Context } from "deco/deco.ts";
-import { useScript } from "deco/hooks/useScript.ts";
+import Theme from "../sections/Theme/Theme.tsx";
 
-const serviceWorkerScript = () =>
+const sw = () =>
   addEventListener("load", () =>
     navigator && navigator.serviceWorker &&
     navigator.serviceWorker.register("/sw.js"));
@@ -13,14 +13,13 @@ export default defineApp(async (_req, ctx) => {
 
   return (
     <>
+      {/* Include default fonts and css vars */}
+      <Theme />
+
       {/* Include Icons and manifest */}
       <Head>
         {/* Enable View Transitions API */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `@view-transition { navigation: auto; }`,
-          }}
-        />
+        <meta name="view-transition" content="same-origin" />
 
         {/* Tailwind v3 CSS file */}
         <link
@@ -35,9 +34,10 @@ export default defineApp(async (_req, ctx) => {
       {/* Rest of Preact tree */}
       <ctx.Component />
 
+      {/* Include service worker */}
       <script
         type="module"
-        dangerouslySetInnerHTML={{ __html: useScript(serviceWorkerScript) }}
+        dangerouslySetInnerHTML={{ __html: `(${sw})();` }}
       />
     </>
   );
