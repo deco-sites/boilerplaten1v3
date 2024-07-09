@@ -254,5 +254,11 @@
   "/.deco/blocks/Preview%20commerce%2Floaders%2Fextensions%2FproductDetailsPage.ts.json": {
     "blockType": "loaders",
     "__resolveType": "commerce/loaders/extensions/productDetailsPage.ts"
+  },
+  "/.deco/blocks/pages-Search-872141.json": {
+    "name": "Search",
+    "path": "/s",
+    "blockType": "pages",
+    "__resolveType": "website/pages/Page.tsx"
   }
 }
