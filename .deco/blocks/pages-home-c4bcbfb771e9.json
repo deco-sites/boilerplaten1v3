@@ -27,6 +27,27 @@
     },
     {
       "__resolveType": "LgpdModal"
+    },
+    {
+      "__resolveType": "site/sections/Newsletter/NewsletterModal.tsx",
+      "modalCloseExpiredDate": 10,
+      "modalSignExpiredDate": 36,
+      "text": "<p>&nbsp;</p>",
+      "form": {
+        "email": {
+          "placeholder": "Digite seu e-mail"
+        },
+        "name": {
+          "placeholder": "Digite seu nome"
+        },
+        "button": {
+          "label": "CADASTRAR"
+        },
+        "privacyContact": {
+          "posLabel": " ",
+          "preLabel": " "
+        }
+      }
     }
   ],
   "__resolveType": "website/pages/Page.tsx",

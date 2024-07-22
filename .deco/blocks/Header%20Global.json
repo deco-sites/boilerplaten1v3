@@ -105,8 +105,28 @@
           {
             "href": "/departamento-1",
             "label": "Lançamentos",
-            "children": [],
-            "highlighted": true
+            "children": [
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Lançamento 01",
+                "href": "/"
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Lançamento 02",
+                "href": "/"
+              },
+              {
+                "children": [],
+                "variant": "CommonChild",
+                "label": "Lançamento 03",
+                "href": "/"
+              }
+            ],
+            "highlighted": true,
+            "image": {}
           },
           {
             "href": "/departamento-1",

@@ -3,6 +3,12 @@
   "path": "/institucional/garantia",
   "sections": [
     {
+      "__resolveType": "website/sections/Seo/SeoV2.tsx",
+      "title": "Garantia",
+      "description": "Description da Garantia",
+      "canonical": "/institucional/garantia"
+    },
+    {
       "__resolveType": "Analytics"
     },
     {
