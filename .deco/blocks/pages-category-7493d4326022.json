@@ -7,7 +7,11 @@
   "sections": [
     {
       "jsonLD": {
-        "__resolveType": "PLP Loader"
+        "__resolveType": "vtex/loaders/intelligentSearch/productListingPage.ts",
+        "sort": "price:desc",
+        "fuzzy": "automatic",
+        "selectedFacets": [],
+        "count": 9
       },
       "__resolveType": "commerce/sections/Seo/SeoPLP.tsx"
     },

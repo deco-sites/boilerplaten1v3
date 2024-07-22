@@ -47,7 +47,8 @@
           "posLabel": " ",
           "preLabel": " "
         }
-      }
+      },
+      "logo": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/11133/40a3b52c-2cb1-4d1d-b009-4fb5c0b86497"
     }
   ],
   "__resolveType": "website/pages/Page.tsx",

@@ -1,13 +1,14 @@
 {
   "seo": {
     "type": "website",
-    "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2177/a5d890ba-e5b8-471e-8b77-7412c1d4fa56",
-    "title": "Storefront",
+    "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/11133/155f42f2-ca66-4a11-9f1b-f1c19210127a",
     "jsonLDs": [],
     "noIndexing": false,
-    "description": "Improve your page performance with deco.cx ",
-    "titleTemplate": "%s | deco.cx",
-    "descriptionTemplate": "%s | Deco.cx"
+    "titleTemplate": "%s | Agência N1",
+    "descriptionTemplate": "%s | Agência N1",
+    "favicon": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/11133/155f42f2-ca66-4a11-9f1b-f1c19210127a",
+    "description": "Agência oficialmente reconhecida como expert na plataforma de e-commerce Vtex! Clique e confira nossos cases e serviços.",
+    "title": "Agência N1"
   },
   "theme": {
     "__resolveType": "N1"
