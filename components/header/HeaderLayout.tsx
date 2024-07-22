@@ -23,7 +23,7 @@ export interface Props {
       width?: number;
       height?: number;
     };
-    alt?: string
+    alt?: string;
   };
 
   /**
