@@ -1,11 +1,9 @@
 import Button from "../../components/ui/Button.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 import Slider from "../../components/ui/Slider.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useId } from "preact/hooks";
-// import { sendEvent } from "../sdk/analytics.tsx";
-// import { sendEventOnClick } from "../../sdk/analytics.tsx";
+import { BannerPropretie } from "deco-sites/boilerplaten1v3/components/ui/CategoryBanner.tsx";
 
 export type ButtonVariant =
   | "primary"
@@ -39,9 +37,9 @@ export const CONDITIONAL_RESPONSIVE_PARAMS: Record<
 
 export interface Banner {
   /** @description desktop otimized image */
-  desktop: ImageWidget;
+  desktop: BannerPropretie;
   /** @description mobile otimized image */
-  mobile: ImageWidget;
+  mobile: BannerPropretie;
   /** @description Image's alt text */
   alt: string;
   /**
@@ -161,21 +159,21 @@ function BannerItem(
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={mobile}
-          width={320}
-          height={380}
+          src={mobile?.image}
+          width={mobile?.width ?? 320}
+          height={mobile?.height ?? 380}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
-          src={desktop}
-          width={1920}
-          height={600}
+          src={desktop?.image}
+          width={desktop?.width ?? 1920}
+          height={desktop?.height ?? 600}
         />
         <img
           class="object-cover w-full h-full"
           loading={lcp ? "eager" : "lazy"}
-          src={desktop}
+          src={desktop?.image}
           alt={alt}
         />
       </Picture>

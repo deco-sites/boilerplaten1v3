@@ -3,12 +3,10 @@ import type { SectionProps } from "deco/types.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 // import Image from "apps/website/components/Image.tsx";
 
-
-
 export interface BannerPropretie {
-  image: ImageWidget
-  width?: number
-  height?: number  
+  image: ImageWidget;
+  width?: number;
+  height?: number;
 }
 
 /**
@@ -31,20 +29,22 @@ export interface BannerProps {
   };
 }
 
-const DEFAULT_PROPS: {banners:BannerProps[]} = {
+const DEFAULT_PROPS: { banners: BannerProps[] } = {
   banners: [
     {
       image: {
-       desktop: {
-        image: "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-        height: 1440,
-        width: 200
-       },
-       mobile: {
-        image: "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/91102b71-4832-486a-b683-5f7b06f649af",
-        height: 360,
-        width: 120
-       }
+        desktop: {
+          image:
+            "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
+          height: 1440,
+          width: 200,
+        },
+        mobile: {
+          image:
+            "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/91102b71-4832-486a-b683-5f7b06f649af",
+          height: 360,
+          width: 120,
+        },
       },
       title: "Woman",
       matcher: "/*",
@@ -77,7 +77,11 @@ function Banner(props: SectionProps<ReturnType<typeof loader>>) {
           height={image?.mobile?.height ?? 200}
           media="(min-width: 767px)"
         />
-        <img class="w-full" src={image?.desktop?.image} alt={image.alt ?? title} />
+        <img
+          class="w-full"
+          src={image?.desktop?.image}
+          alt={image.alt ?? title}
+        />
       </Picture>
 
       <div class="container flex flex-col items-center justify-center sm:items-start col-start-1 col-span-1 row-start-1 row-span-1 w-full">

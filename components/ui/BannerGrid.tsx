@@ -1,6 +1,6 @@
-import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { clx } from "../../sdk/clx.ts";
+import { BannerPropretie } from "deco-sites/boilerplaten1v3/components/ui/CategoryBanner.tsx";
 
 export type SemanticColors =
   | "primary"
@@ -31,8 +31,8 @@ export interface BagdeItem {
 }
 
 export interface Banner {
-  srcDesktop?: ImageWidget;
-  srcMobile: ImageWidget;
+  srcDesktop?: BannerPropretie;
+  srcMobile: BannerPropretie;
   alt: string;
   href: string;
   /**
@@ -377,20 +377,20 @@ export default function BannnerGrid({
 
                     <Picture>
                       <Source
-                        width={280}
+                        width={srcMobile?.width ?? 280}
                         height={rowSpan == 2 ? 280 : 133}
                         media="(max-width: 767px)"
-                        src={srcMobile ?? srcDesktop}
+                        src={srcMobile?.image ?? srcDesktop?.image}
                       />
                       <Source
-                        width={570}
+                        width={srcDesktop?.width ?? 570}
                         height={rowSpan == 2 ? 570 : 270}
                         media="(min-width: 768px)"
-                        src={srcDesktop ?? srcMobile}
+                        src={srcDesktop?.image ?? srcMobile?.image}
                       />
                       <img
                         class="w-full h-full"
-                        src={srcMobile}
+                        src={srcMobile?.image}
                         alt={alt}
                         decoding="async"
                         loading="lazy"
