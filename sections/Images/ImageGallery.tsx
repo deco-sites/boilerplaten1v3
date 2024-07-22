@@ -4,9 +4,8 @@ import {
   MOBILE_COLUMNS,
   SemanticColors,
 } from "../../components/ui/BannerGrid.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-// import { Head } from "$fresh/runtime.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { BannerPropretie } from "deco-sites/boilerplaten1v3/components/ui/CategoryBanner.tsx";
 
 export type BorderSize =
   | "none"
@@ -20,10 +19,10 @@ export interface ImageGalleryItem {
   title?: string;
 
   /** @description Image url */
-  image: ImageWidget;
+  image: BannerPropretie;
 
   /** @description Image Mobile url */
-  imageMobile?: ImageWidget;
+  imageMobile?: BannerPropretie;
 
   /** @description Alt text */
   alt: string;
@@ -172,20 +171,20 @@ export default function ImageGallery(props: Props) {
             preload={item.preload}
           >
             <Source
-              width={400}
-              height={400}
+              width={item?.imageMobile?.width ?? 400}
+              height={item?.imageMobile?.height ?? 400}
               media="(max-width: 767px)"
-              src={item?.imageMobile ?? item?.image}
+              src={item?.imageMobile?.image ?? item?.image?.image}
             />
             <Source
-              width={370}
-              height={420}
+              width={item?.image?.width ??  370}
+              height={item?.image?.height ?? 420}
               media="(min-width: 768px)"
-              src={item?.image ?? item?.imageMobile}
+              src={item?.image?.image ?? item?.imageMobile?.image}
             />
             <img
               class="w-full h-full object-cover"
-              src={item?.imageMobile}
+              src={item?.imageMobile?.image}
               alt={item.alt}
               decoding="async"
               loading="lazy"
