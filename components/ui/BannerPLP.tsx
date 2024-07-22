@@ -1,7 +1,7 @@
 import { SectionProps } from "deco/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { BannerPropretie } from "deco-sites/boilerplaten1v3/components/ui/CategoryBanner.tsx";
 
 /**
  * @titleBy matcher
@@ -21,9 +21,9 @@ export interface Banner {
   };
   image: {
     /** @description Image for big screens */
-    desktop: ImageWidget;
+    desktop: BannerPropretie;
     /** @description Image for small screens */
-    mobile: ImageWidget;
+    mobile: BannerPropretie;
     /** @description image alt text */
     alt?: string;
   };
@@ -66,9 +66,9 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
     >
       <Picture preload class="col-start-1 col-span-1 row-start-1 row-span-1">
         <Source
-          src={image.mobile}
-          width={280}
-          height={80}
+          src={image?.mobile?.image}
+          width={image?.mobile?.width ?? 280}
+          height={image?.mobile?.height ?? 80}
           media="(max-width: 767px)"
         />
 
@@ -76,10 +76,10 @@ function Banner({ banner }: SectionProps<ReturnType<typeof loader>>) {
           class="w-full h-full "
           fetchPriority="high"
           preload
-          src={image.desktop}
+          src={image?.desktop?.image}
           alt={image.alt ?? title}
-          width={1536}
-          height={144}
+          width={image?.desktop?.width ?? 1536}
+          height={image?.desktop?.height ?? 144}
         />
       </Picture>
 

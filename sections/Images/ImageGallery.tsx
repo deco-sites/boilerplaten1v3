@@ -177,7 +177,7 @@ export default function ImageGallery(props: Props) {
               src={item?.imageMobile?.image ?? item?.image?.image}
             />
             <Source
-              width={item?.image?.width ??  370}
+              width={item?.image?.width ?? 370}
               height={item?.image?.height ?? 420}
               media="(min-width: 768px)"
               src={item?.image?.image ?? item?.imageMobile?.image}
