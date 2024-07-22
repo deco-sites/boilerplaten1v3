@@ -3,7 +3,6 @@ import {
   ButtonVariant,
 } from "../../components/minicart/Cart.tsx";
 import Icon from "../../components/ui/Icon.tsx";
-import Logo from "../../components/ui/Logo.tsx";
 import { useSignal } from "@preact/signals";
 import { SectionProps } from "deco/types.ts";
 import type { JSX } from "preact";
@@ -14,7 +13,6 @@ import {
   InputCheckboxNewsletterProps,
 } from "../../components/newsletter/Newsletter.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
-
 
 export interface INewsletterInputProps {
   /**
@@ -129,7 +127,7 @@ function NewsletterModal(
     text,
     modalSignExpiredDate,
     modalCloseExpiredDate,
-    logo
+    logo,
   }: SectionProps<
     ReturnType<typeof loader>
   >,
