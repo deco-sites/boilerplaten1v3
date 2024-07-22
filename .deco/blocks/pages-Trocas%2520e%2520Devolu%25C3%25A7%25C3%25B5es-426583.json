@@ -3,6 +3,12 @@
   "path": "/institucional/trocas-devolucoes",
   "sections": [
     {
+      "__resolveType": "website/sections/Seo/SeoV2.tsx",
+      "title": "Trocas e Devoluções",
+      "description": "Description de Trocas e Devoluções",
+      "canonical": "/institucional/trocas-devolucoes"
+    },
+    {
       "__resolveType": "Analytics"
     },
     {

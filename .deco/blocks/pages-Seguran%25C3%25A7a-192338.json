@@ -3,6 +3,12 @@
   "path": "/institucional/seguranca",
   "sections": [
     {
+      "__resolveType": "website/sections/Seo/SeoV2.tsx",
+      "title": "Segurança",
+      "description": "Description de Segurança",
+      "canonical": "/institucional/seguranca"
+    },
+    {
       "__resolveType": "Analytics"
     },
     {
