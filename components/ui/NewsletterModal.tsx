@@ -13,6 +13,9 @@ import {
   INewsletterInputCheckboxProps,
   InputCheckboxNewsletterProps,
 } from "../../components/newsletter/Newsletter.tsx";
+import { ImageWidget } from "apps/admin/widgets.ts";
+
+
 export interface INewsletterInputProps {
   /**
    * @title Hide input?
@@ -43,6 +46,7 @@ export interface INewsletterFormProps {
 }
 
 export interface Props {
+  logo: ImageWidget;
   /**
    * @title Newsletter Form
    */
@@ -86,7 +90,7 @@ function InputNewsletter(
     <input
       name={name}
       type={type}
-      class="input text-[#585858] lg:h-9 h-9 px-5 join-item w-full mb-2.5 first:mt-5 border-2 border-neutral rounded-full placeholder:text-placeholder !outline-none lg:text-base text-xs"
+      class="input text-[#585858] lg:h-9 h-9 px-5 join-item w-full mb-2.5 first:mt-5 border-2 border-accent rounded-full placeholder:text-placeholder !outline-none lg:text-base text-xs"
       placeholder={placeholder}
       required={required}
     />
@@ -125,6 +129,7 @@ function NewsletterModal(
     text,
     modalSignExpiredDate,
     modalCloseExpiredDate,
+    logo
   }: SectionProps<
     ReturnType<typeof loader>
   >,
@@ -255,7 +260,7 @@ function NewsletterModal(
               aria-label="Fechar"
             >
               <Icon
-                id="XMark"
+                id="Close"
                 width={20}
                 height={20}
               />
@@ -269,11 +274,7 @@ function NewsletterModal(
             )
             : (
               <>
-                <Logo
-                  class="mx-auto mb-5 block"
-                  width={131}
-                  height={56}
-                />
+                {logo && <img class="w-full" src={logo} alt={"logo"} />}
                 <div
                   dangerouslySetInnerHTML={{ __html: text }}
                   class="text-base lg:text-xl text-center text-base-100 lg:pr-0 "
