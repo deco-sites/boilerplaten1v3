@@ -11,7 +11,7 @@
     "title": "Agência N1"
   },
   "theme": {
-    "__resolveType": "N1"
+    "__resolveType": "N1-CUSTOM"
   },
   "global": [
     {

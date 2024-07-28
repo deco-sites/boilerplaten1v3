@@ -17,6 +17,7 @@
   "mode": "dark",
   "mainColors": {
     "primary": "#2F1893",
-    "tertiary": "#82868c"
+    "tertiary": "#82868c",
+    "base-100": "#00000"
   }
 }
