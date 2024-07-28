@@ -79,7 +79,7 @@
             },
             "discount": {
               "label": "off",
-              "variant": "secondary"
+              "variant": "emphasis"
             },
             "basics": {
               "ctaMode": "Add to Cart",
