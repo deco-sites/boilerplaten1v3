@@ -6,7 +6,7 @@ import type { JSX } from "preact";
 export interface Form {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
+  /**@rich-text*/
   helpText?: string;
 }
 

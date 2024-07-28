@@ -136,6 +136,23 @@
   animation: progress-frame ease normal
 }
 
+/* Remove spinner arrows in WebKit browsers (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove spinner arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Remove spinner arrows in Internet Explorer 10+ and Edge (non-Chromium) */
+input[type="number"] {
+  -ms-appearance: textfield;
+}
+
 @keyframes progress-frame {
   0% {
     --dot-progress: 0%

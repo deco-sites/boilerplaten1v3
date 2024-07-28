@@ -31,7 +31,9 @@ export interface BagdeItem {
 }
 
 export interface Banner {
+    /** @description Banner Desktop (medida indicada: 570 x 570) */
   srcDesktop?: BannerPropretie;
+      /** @description Banner Mobile (medida indicada:  280  x 280) */
   srcMobile: BannerPropretie;
   alt: string;
   href: string;
