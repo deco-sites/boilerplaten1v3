@@ -186,7 +186,7 @@ function Buttons({ className }: ButtonsProps) {
   return (
     <>
       <div
-        class={`absolute top-2/4 lg:-left-11 left-2 z-10 col-start-1 row-start-3  ${className}`}
+        class={`absolute top-2/4 lg:-left-2 left-1 z-10 col-start-1 row-start-3  ${className}`}
       >
         <Slider.PrevButton
           style={{
@@ -203,7 +203,7 @@ function Buttons({ className }: ButtonsProps) {
         </Slider.PrevButton>
       </div>
       <div
-        class={`absolute top-2/4 lg:-right-11 right-2  z-10 col-start-3 row-start-3 ${className}`}
+        class={`absolute top-2/4 lg:-right-2 right-1  z-10 col-start-3 row-start-3 ${className}`}
       >
         <Slider.NextButton
           style={{
