@@ -274,6 +274,23 @@
       ]
     },
     {
+      "__resolveType": "site/sections/Product/ProductShelf.tsx",
+      "products": {
+        "__resolveType": "vtex/loaders/legacy/relatedProductsLoader.ts",
+        "crossSelling": "whosawalsobought",
+        "count": 15,
+        "slug": {
+          "__resolveType": "website/functions/requestToParam.ts",
+          "param": "slug"
+        }
+      },
+      "title": "Quem viu,  viu também ",
+      "seeMore": {
+        "url": "#",
+        "label": "+ ver mais "
+      }
+    },
+    {
       "__resolveType": "Footer Global"
     }
   ],
