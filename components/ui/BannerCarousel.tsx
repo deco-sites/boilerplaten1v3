@@ -36,9 +36,9 @@ export const CONDITIONAL_RESPONSIVE_PARAMS: Record<
 };
 
 export interface Banner {
-  /** @description desktop otimized image */
+  /** @description Banner Desktop (medida indicada: 1920 x 600) */
   desktop: BannerPropretie;
-  /** @description mobile otimized image */
+  /** @description  Banner mobile(medida indicada: 320 x 380)*/
   mobile: BannerPropretie;
   /** @description Image's alt text */
   alt: string;

@@ -20,9 +20,9 @@ export interface Banner {
     desktopTextPosition?: BannerTextPostion;
   };
   image: {
-    /** @description Image for big screens */
+    /** @description Banner Desktop (medida indicada: 1536 x 144) */
     desktop: BannerPropretie;
-    /** @description Image for small screens */
+    /** @description  Banner Desktop (medida indicada: 280 x 80) */
     mobile: BannerPropretie;
     /** @description image alt text */
     alt?: string;

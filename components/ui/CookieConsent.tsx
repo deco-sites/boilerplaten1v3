@@ -27,7 +27,7 @@ const script = (id: string) => {
 
 export interface Props {
   title?: string;
-  /** @format html */
+  /**@rich-text*/
   text?: string;
   policy?: {
     text?: string;
